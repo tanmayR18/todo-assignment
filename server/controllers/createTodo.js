@@ -5,6 +5,7 @@ exports.createTodo = async(req, res) => {
     try{
 
         const {title, description} = req.body
+        console.log("Here is the response",title, description)
 
         if(!title || !description){
             return res.status(404).json({
