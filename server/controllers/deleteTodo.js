@@ -14,6 +14,9 @@ exports.deleteTodo = async(req, res) => {
         }
 
         const deletedTodo =  await Todo.findByIdAndDelete(id);
+
+        const remainingTodos = await Todo.find({ _id: { $ne: id } });
+
         if (!deletedTodo) {
             return res.status(400).json({
                 success: false,
@@ -25,7 +28,7 @@ exports.deleteTodo = async(req, res) => {
         return res.status(200).json({
             success: true,
             message: "Todo Deleted",
-            data: deletedTodo
+            data: remainingTodos
         })
     
     } catch{

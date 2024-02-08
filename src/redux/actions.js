@@ -48,6 +48,7 @@ export const updateTodo = (id, title, description) => {
             const response = await axios.put(process.env.REACT_APP_BASE_URL + "/updateTodo", {id, title, description} )
             if(response.data.success){
                 toast.success("Todo updated")
+                console.log("updation data", response.data.data)
                 dispatch(setUpdatedTodo(response.data.data))
             }
             toast.remove(loadingId)
@@ -63,10 +64,10 @@ export const markAsCompleted = (id) => {
     return async(dispatch) => {
         const loadingId = toast.loading("updating todo")
         try{
-            console.log("This is the id",id)
             const response = await axios.put(process.env.REACT_APP_BASE_URL + "/updateComplition", {id})
             if(response.data.success){
                 toast.success("Todo updated")
+                console.log("Completion data", response.data.data)
                 dispatch(setCompletedTodo(response.data.data))
             }
             toast.remove(loadingId)
@@ -86,14 +87,14 @@ export const deleteTodo = (id) => {
             const response = await axios.delete(process.env.REACT_APP_BASE_URL + "/deleteTodo", {data: {id}})
             if(response.data.success){
                 toast.success("Todo deleted")
-                dispatch(setDeletedTodo(response.data.data._id))
+                console.log("Deleted todo", response.data.data)
+                dispatch(setDeletedTodo(response.data.data))
             }
-
             toast.remove(loadingId)
         }catch(error){
             console.log(error.message)
             toast.remove(loadingId)
-            toast.error("Error wile updating todo")
+            toast.error("Error wile deleting todo")
         }
     }
 }

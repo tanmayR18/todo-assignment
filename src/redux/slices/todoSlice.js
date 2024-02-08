@@ -20,14 +20,19 @@ const todoSlice = createSlice({
             state.todos = value.payload
         },
         setDeletedTodo(state, value){
-            state.todos = state.todos.filter( todo => value.payload !== todo._id )
+            state.todos = value.payload
         },
         setCompletedTodo(state, value){
-            state.todos = [value.payload, ...state.todos.filter( todo => value.payload._id !== todo._id )]
+            state.todos = [...state.todos.map( todo => {
+                if(value.payload._id === todo._id) return value.payload
+                return todo
+            } )]
         },
         setUpdatedTodo(state, value){
-            state.todos = [value.payload, ...state.todos.filter( todo => value.payload._id !== todo._id )]
-
+            state.todos = [...state.todos.map( todo => {
+                if(value.payload._id === todo._id) return value.payload
+                return todo
+            } )]
         }
     }
 })
