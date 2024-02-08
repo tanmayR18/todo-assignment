@@ -11,6 +11,10 @@ const todo = mongoose.Schema({
         type: String,
         required: true,
         maxlength: 500
+    },
+    complete: {
+        type: Boolean,
+        default: false
     }
 })
 
