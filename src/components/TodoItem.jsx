@@ -19,8 +19,15 @@ const TodoItem = ({todo}) => {
         setEdit(false)
         if(title === "" || description === ""){
             toast.error("Fill all the fields")
+            console.log("This is been reset", todo.title)
             setTitle(todo.title)
-            setTitle(todo.description)
+            setDescription(todo.description)
+            return
+        }
+        if(title.length > 50  || description.length > 100){
+            toast.error("Fill the field withn valid limit")
+            setTitle(todo.title)
+            setDescription(todo.description)
             return
         }
         dispatch(updateTodo(todo._id, title, description))
@@ -38,12 +45,14 @@ const TodoItem = ({todo}) => {
             <input
             disabled = {!edit || loading} 
             value={title}
+            maxLength={50}
             onChange={(e) => setTitle(e.target.value)}
             className={` w-full text-2xl font-semibold bg-slate-800 focus:border-none focus:outline-none   ${todo?.complete ? " text-cyan-900 line-through " : " text-orange-500" }`} />
             
             <input 
             value={description}
             disabled = {!edit || loading} 
+            maxLength={100}
             onChange={(e) => setDescription(e.target.value)}
             className={` w-full text-xs focus:border-none focus:outline-none bg-slate-800 text-white ${todo?.complete ? " text-cyan-900 line-through " : " text-orange-500" }`} />
         </div>
