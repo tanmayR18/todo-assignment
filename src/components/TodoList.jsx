@@ -7,18 +7,18 @@ import { useDispatch, useSelector } from "react-redux";
 const TodoList = () => {
     const {todos} = useSelector( state => state.todo)
     const [ start, setStart ] = useState(0)
-    const [ end, setEnd ] = useState(3)
+    const [ end, setEnd ] = useState(5)
 
     const handleNext = () => {
         if(end > todos.length -1 ) return 
-        setEnd((prev) => prev + 3)
-        setStart((prev) => prev + 3)
+        setEnd((prev) => prev + 5)
+        setStart((prev) => prev + 5)
     }
 
     const handlePrevious = () => {
         if(start === 0) return
-        setStart((prev) => prev - 3)
-        setEnd((prev) => prev - 3)
+        setStart((prev) => prev - 5)
+        setEnd((prev) => prev - 5)
     }
 
   return (
