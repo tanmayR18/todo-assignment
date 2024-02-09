@@ -15,7 +15,7 @@ function App() {
     },[])
 
   return (
-    <div className=" min-h-screen flex items-center justify-center bg-slate-900">
+    <div className=" min-h-screen flex items-center justify-center bg-slate-900 py-10">
         <div className=" flex flex-col gap-6">
             <h1 className=" text-center font-bold text-white  text-2xl tracking-widest">Todo List</h1>
             <div className=" flex flex-col gap-3">
